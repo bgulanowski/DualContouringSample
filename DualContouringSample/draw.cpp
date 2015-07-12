@@ -11,6 +11,12 @@
 #include "glsl_program.h"
 #include "mesh.h"
 
+#include <GL/glew.h>
+#include <SDL2/SDL.h>
+#include <SDL2/SDL_opengl.h>
+
+#include <stdio.h>
+
 void DrawFrame(GLSLProgram& program, Mesh& mesh, const glm::vec3& pos, const glm::vec3& fwd, bool drawWireframe)
 {
     glClearColor(0.f, 0.f, 0.f, 0.f);

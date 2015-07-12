@@ -9,11 +9,7 @@
 #ifndef draw_cpp
 #define draw_cpp
 
-#include <GL/glew.h>
-#include <SDL2/SDL.h>
-#include <SDL2/SDL_opengl.h>
 #include <glm/glm.hpp>
-#include <stdio.h>
 
 class GLSLProgram;
 class Mesh;
