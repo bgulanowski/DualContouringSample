@@ -123,7 +123,7 @@ bool GLSLProgram::link()
 
 	if (GLenum err = glGetError() != GL_NO_ERROR)
 	{
-		printf("GLSLProgram: err=%d\n");
+		printf("GLSLProgram: err=%d\n", err);
 		return false;
 	}
 

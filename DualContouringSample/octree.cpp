@@ -236,7 +236,7 @@ void GenerateVertexIndices(OctreeNode* node, VertexBuffer& vertexBuffer)
 			exit(EXIT_FAILURE);
 		}
 
-		d->index = vertexBuffer.size();
+		d->index = int(vertexBuffer.size());
 		vertexBuffer.push_back(MeshVertex(d->position, d->averageNormal));
 	}
 }
