@@ -13,6 +13,8 @@
 
 const int MAX_THRESHOLDS = 5;
 const float THRESHOLDS[MAX_THRESHOLDS] = { -1.f, 0.1f, 1.f, 10.f, 50.f };
+// octreeSize must be a power of two!
+const int octreeSize = 64;
 
 // ----------------------------------------------------------------------------
 
@@ -121,17 +123,14 @@ Mesh mesh;
 OctreeNode* root = nullptr;
 Uint32 lastFrameTime = 0;
 
-// octreeSize must be a power of two!
-const int octreeSize = 64;
-
 float rotateX = -60.f, rotateY = 0.f;
 float distance = 100.f;
 bool drawWireframe = false;
-bool refreshMesh = true;
+bool refreshMesh = false;
 int thresholdIndex = -1;
 
 
-void loadProgram( void ) {
+bool loadProgram( void ) {
     
     program = GLSLProgram();
     
@@ -141,7 +140,9 @@ void loadProgram( void ) {
         !program.link())
     {
         printf("Error: failed to create GLSL program\n");
+        return false;
     }
+    return true;
 }
 
 void reloadMesh( void ) {
@@ -161,6 +162,63 @@ void reloadMesh( void ) {
     refreshMesh = false;
 }
 
+bool handleInput( void ) {
+    
+    SDL_Event event;
+    while (SDL_PollEvent(&event))
+    {
+        switch (event.type)
+        {
+            case SDL_QUIT:
+                return true;
+                break;
+                
+            case SDL_MOUSEMOTION:
+                HandleMouseMove(event.motion, rotateX, rotateY);
+                break;
+                
+            case SDL_MOUSEWHEEL:
+                HandleMouseWheel(event.wheel, distance);
+                break;
+                
+            case SDL_KEYUP:
+                HandleKeyPress(event.key, drawWireframe, refreshMesh);
+                break;
+        }
+    }
+    
+    return false;
+}
+
+void loop( SDL_Window *window ) {
+    
+    while (handleInput() == false)
+    {
+        if (refreshMesh)
+        {
+            reloadMesh();
+        }
+        
+        if ((SDL_GetTicks() - lastFrameTime) < 33)
+        {
+            continue;
+        }
+        
+        lastFrameTime = SDL_GetTicks();
+        
+        // calculate the forward vector and then use that find the camera position
+        glm::vec3 dir(0.f, 0.f, 1.f);
+        dir = glm::rotateX(dir, rotateX);
+        dir = glm::rotateY(dir, rotateY);
+        
+        glm::vec3 position = dir * distance;
+        
+        DrawFrame(program, mesh, position, -dir, drawWireframe);
+        
+        SDL_GL_SwapWindow(window);
+    }
+}
+
 int main(int argc, char** argv)
 {
     SDL_Window* window = initSDL();
@@ -171,67 +229,21 @@ int main(int argc, char** argv)
         return EXIT_FAILURE;
     }
 
-	glViewport(0, 0, 1280, 720);
-
-	// getting an (suprious?) error from glew here, just ignore
-	glGetError();
+    glViewport(0, 0, 1280, 720);
     
+    // getting an (suprious?) error from glew here, just ignore
+    glGetError();
+    
+    if (!loadProgram()) {
+        return EXIT_FAILURE;
+    }
+
     printHelp();
     
-    loadProgram();
-
 	mesh.initialise();
+    reloadMesh();
 
-
-	bool quit = false;
-	while (!quit)
-	{
-		SDL_Event event;
-		while (SDL_PollEvent(&event))
-		{
-			switch (event.type)
-			{
-			case SDL_QUIT:
-				quit = true;
-				break;
-
-			case SDL_MOUSEMOTION:
-				HandleMouseMove(event.motion, rotateX, rotateY);
-				break;
-
-			case SDL_MOUSEWHEEL:
-				HandleMouseWheel(event.wheel, distance);
-				break;
-
-			case SDL_KEYUP:
-				HandleKeyPress(event.key, drawWireframe, refreshMesh);
-				break;
-			}
-		}
-
-		if (refreshMesh)
-		{
-            reloadMesh();
-		}
-
-		if ((SDL_GetTicks() - lastFrameTime) < 33)
-		{
-			continue;
-		}
-
-		lastFrameTime = SDL_GetTicks();
-
-		// calculate the forward vector and then use that find the camera position
-		glm::vec3 dir(0.f, 0.f, 1.f);
-		dir = glm::rotateX(dir, rotateX);
-		dir = glm::rotateY(dir, rotateY);
-
-		glm::vec3 position = dir * distance;
-
-		DrawFrame(program, mesh, position, -dir, drawWireframe);
-
-		SDL_GL_SwapWindow(window);
-	}
+    loop(window);
 
 	DestroyOctree(root);
 	mesh.destroy();
