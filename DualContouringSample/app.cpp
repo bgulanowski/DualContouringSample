@@ -95,8 +95,6 @@ bool app::initGL( void ) {
 
 bool app::loadProgram( void ) {
     
-    program = GLSLProgram();
-    
     if (!program.initialise() ||
         !program.compileShader(ShaderType_Vertex, "shader.vert") ||
         !program.compileShader(ShaderType_Fragment, "shader.frag") ||
