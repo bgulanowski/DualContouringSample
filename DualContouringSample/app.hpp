@@ -18,13 +18,14 @@ class app {
 public:
     app() : program(), mesh(), root(nullptr), lastFrameTime(0) {};
     
+    // convenience for initialize()/mainLoop()/cleanup()
     bool run( void );
     
-private:
     bool initialize( void );
     void mainLoop( void );
     void cleanup( void );
     
+private:
     bool initSDL( void );
     bool initGL( void );
     bool loadProgram( void );
@@ -33,9 +34,9 @@ private:
     void reloadMesh( void );
     bool handleInput( void );
     
-    void HandleMouseMove(const SDL_MouseMotionEvent& e);
-    void HandleMouseWheel(const SDL_MouseWheelEvent& e);
-    void HandleKeyPress(const SDL_KeyboardEvent& e);
+    void handleMouseMove(const SDL_MouseMotionEvent& e);
+    void handleMouseWheel(const SDL_MouseWheelEvent& e);
+    void handleKeyPress(const SDL_KeyboardEvent& e);
 
     SDL_Window* window;
     GLSLProgram program;

@@ -24,20 +24,17 @@ bool app::run() {
 
 bool app::initialize() {
     
-    if(!initSDL()) {
+    if(initSDL() && initGL()) {
+        printHelp();
+        
+        mesh.initialise();
+        reloadMesh();
+        
+        return true;
+    }
+    else {
         return false;
     }
-    
-    if (!initGL()) {
-        return false;
-    }
-    
-    printHelp();
-    
-    mesh.initialise();
-    reloadMesh();
-    
-    return true;
 }
 
 bool app::initSDL( void ) {
@@ -152,15 +149,15 @@ bool app::handleInput( void ) {
                 break;
                 
             case SDL_MOUSEMOTION:
-                HandleMouseMove(event.motion);
+                handleMouseMove(event.motion);
                 break;
                 
             case SDL_MOUSEWHEEL:
-                HandleMouseWheel(event.wheel);
+                handleMouseWheel(event.wheel);
                 break;
                 
             case SDL_KEYUP:
-                HandleKeyPress(event.key);
+                handleKeyPress(event.key);
                 break;
         }
     }
@@ -210,7 +207,7 @@ void app::cleanup( void ) {
 
 #pragma mark - Event Handlers
 
-void app::HandleMouseMove(const SDL_MouseMotionEvent& e)
+void app::handleMouseMove(const SDL_MouseMotionEvent& e)
 {
     if (e.state & SDL_BUTTON_LMASK)
     {
@@ -222,12 +219,12 @@ void app::HandleMouseMove(const SDL_MouseMotionEvent& e)
     }
 }
 
-void app::HandleMouseWheel(const SDL_MouseWheelEvent& e)
+void app::handleMouseWheel(const SDL_MouseWheelEvent& e)
 {
     distance += -e.y * 10.f;
 }
 
-void app::HandleKeyPress(const SDL_KeyboardEvent& e)
+void app::handleKeyPress(const SDL_KeyboardEvent& e)
 {
     if (e.type != SDL_KEYUP)
     {
