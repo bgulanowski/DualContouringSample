@@ -53,9 +53,11 @@
     glm::mat4 modelview = glm::lookAt(position - dir, glm::vec3(0.f), glm::vec3(0.f, 1.f, 0.f));
 #endif
     
+    glm::mat4 transform = projection * modelview;
+    
     glUseProgram(_program->getId());
-    _program->setUniform("MVP", _projection * _modelView);
-    _program->setUniformInt("useUniformColour", 0);
+    _program->setUniform("MVP", transform);
+    _program->setUniformInt("useUniformColour", 1);
 }
 
 @end
