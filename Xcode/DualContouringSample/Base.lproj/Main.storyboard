@@ -2,7 +2,6 @@
 <document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="8152.3" systemVersion="14E46" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="8152.3"/>
-        <plugIn identifier="com.apple.SceneKitIBPlugin" version="8152.3"/>
     </dependencies>
     <scenes>
         <!--Application-->
@@ -673,17 +672,20 @@
                         <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
-                            <sceneView translatesAutoresizingMaskIntoConstraints="NO" id="PVV-E4-HZL">
+                            <openGLView depthSize="32bit" useAuxiliaryDepthBufferStencil="NO" useDoubleBufferingEnabled="YES" allowOffline="YES" translatesAutoresizingMaskIntoConstraints="NO" id="9gG-sX-MWl" customClass="GLView">
                                 <rect key="frame" x="0.0" y="0.0" width="480" height="270"/>
-                            </sceneView>
+                            </openGLView>
                         </subviews>
                         <constraints>
-                            <constraint firstAttribute="trailing" secondItem="PVV-E4-HZL" secondAttribute="trailing" id="36I-P4-jdB"/>
-                            <constraint firstAttribute="bottom" secondItem="PVV-E4-HZL" secondAttribute="bottom" id="89T-Hk-PAa"/>
-                            <constraint firstItem="PVV-E4-HZL" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="8l5-Fa-ixF"/>
-                            <constraint firstItem="PVV-E4-HZL" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Ktr-4p-uvA"/>
+                            <constraint firstItem="9gG-sX-MWl" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="1oA-Vw-8Hh"/>
+                            <constraint firstAttribute="bottom" secondItem="9gG-sX-MWl" secondAttribute="bottom" id="E5B-8t-dk0"/>
+                            <constraint firstItem="9gG-sX-MWl" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Ql3-bf-1xD"/>
+                            <constraint firstAttribute="trailing" secondItem="9gG-sX-MWl" secondAttribute="trailing" id="ose-W9-ZoI"/>
                         </constraints>
                     </view>
+                    <connections>
+                        <outlet property="glView" destination="9gG-sX-MWl" id="jfW-I8-z3k"/>
+                    </connections>
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

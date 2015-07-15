@@ -10,6 +10,7 @@
 
 #import "Model.h"
 #import "GLProgram.h"
+#import "GLView.h"
 
 @import OpenGL;
 
@@ -20,13 +21,31 @@
 
 @implementation ViewController
 
+//- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
+//    self = [super initWithCoder:coder];
+//    if (self) {
+//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidLoad:) name:NSApplicationDidFinishLaunchingNotification object:nil];
+//    }
+//    return self;
+//}
+//
+//- (void)applicationDidLoad:(NSNotification *)note {
+//    [self buildScene];
+//    self.glView.needsDisplay = YES;
+//}
+
 - (void)buildScene {
-    _program = [GLProgram new];
     _model = [Model new];
+    [_model reload];
+    _program = [GLProgram new];
 }
 
-- (void)viewDidLoad {
-    [self buildScene];
+- (void)awakeFromNib {
+    if (!_model) {
+        [self buildScene];
+        self.glView.model = self.model;
+        self.glView.program = self.program;
+    }
 }
 
 @end

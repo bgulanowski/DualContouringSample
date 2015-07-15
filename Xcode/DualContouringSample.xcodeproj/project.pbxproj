@@ -7,12 +7,10 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
-		8408C05E1B52EBE00007BD02 /* draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8408C05C1B52EBE00007BD02 /* draw.cpp */; };
-		8408C05F1B52ECC40007BD02 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842839DF1B51516C00917D4C /* main.cpp */; };
-		8408C0621B52F52E0007BD02 /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8408C0601B52F52E0007BD02 /* app.cpp */; };
 		8408C0651B5306BD0007BD02 /* Model.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8408C0641B5306BD0007BD02 /* Model.mm */; };
 		8408C0681B530AE20007BD02 /* GLView.m in Sources */ = {isa = PBXBuildFile; fileRef = 8408C0671B530AE20007BD02 /* GLView.m */; };
 		8408C06C1B530B760007BD02 /* GLProgram.mm in Sources */ = {isa = PBXBuildFile; fileRef = 8408C06B1B530B760007BD02 /* GLProgram.mm */; };
+		8408C06D1B53E0600007BD02 /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 842839C91B51508100917D4C /* main.m */; };
 		842839CF1B51508100917D4C /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842839CE1B51508100917D4C /* Assets.xcassets */; };
 		842839E81B51516C00917D4C /* density.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842839DB1B51516C00917D4C /* density.cpp */; };
 		842839E91B51516C00917D4C /* glsl_program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842839DD1B51516C00917D4C /* glsl_program.cpp */; };
@@ -245,19 +243,17 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				8408C06D1B53E0600007BD02 /* main.m in Sources */,
 				842839E91B51516C00917D4C /* glsl_program.cpp in Sources */,
 				8408C0681B530AE20007BD02 /* GLView.m in Sources */,
 				842839E81B51516C00917D4C /* density.cpp in Sources */,
 				84283A071B52E87000917D4C /* AppDelegate.m in Sources */,
 				8408C0651B5306BD0007BD02 /* Model.mm in Sources */,
-				8408C05E1B52EBE00007BD02 /* draw.cpp in Sources */,
 				84283A061B52E86C00917D4C /* ViewController.m in Sources */,
 				8408C06C1B530B760007BD02 /* GLProgram.mm in Sources */,
 				842839EC1B51516C00917D4C /* octree.cpp in Sources */,
-				8408C0621B52F52E0007BD02 /* app.cpp in Sources */,
 				842839ED1B51516C00917D4C /* qef.cpp in Sources */,
 				842839EB1B51516C00917D4C /* mesh.cpp in Sources */,
-				8408C05F1B52ECC40007BD02 /* main.cpp in Sources */,
 				842839EE1B51516C00917D4C /* svd.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -364,6 +360,7 @@
 				INFOPLIST_FILE = DualContouringSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /opt/local/lib/;
+				OTHER_CFLAGS = "-DCocoa";
 				OTHER_LDFLAGS = (
 					"-lSDL2",
 					"-lGLEW",
@@ -383,6 +380,7 @@
 				INFOPLIST_FILE = DualContouringSample/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				LIBRARY_SEARCH_PATHS = /opt/local/lib/;
+				OTHER_CFLAGS = "-DCocoa";
 				OTHER_LDFLAGS = (
 					"-lSDL2",
 					"-lGLEW",

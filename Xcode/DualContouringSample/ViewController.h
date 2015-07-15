@@ -8,8 +8,11 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class GLView;
+
 @interface ViewController : NSViewController
 
+@property (weak) IBOutlet GLView *glView;
 
 @end
 

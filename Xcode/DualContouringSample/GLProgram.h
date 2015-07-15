@@ -10,4 +10,6 @@
 
 @interface GLProgram : NSObject
 
+- (void)use;
+
 @end

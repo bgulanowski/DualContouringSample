@@ -1,9 +1,14 @@
 #ifndef		HAS_GLSL_PROGRAM_H_BEEN_INCLUDED
 #define		HAS_GLSL_PROGRAM_H_BEEN_INCLUDED
 
+#if defined Cocoa
+#include <OpenGL/gl3.h>
+#else
 #include <GL/glew.h>
 #include <SDL2/SDL.h>
 #include <SDL2/SDL_opengl.h>
+#endif
+
 #include <vector>
 #include <glm/glm.hpp>
 #include <glm/ext.hpp>

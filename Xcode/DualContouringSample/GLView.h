@@ -8,6 +8,12 @@
 
 #import <Cocoa/Cocoa.h>
 
+@class GLProgram;
+@class Model;
+
 @interface GLView : NSOpenGLView
+
+@property (nonatomic) GLProgram *program;
+@property (nonatomic) Model *model;
 
 @end
