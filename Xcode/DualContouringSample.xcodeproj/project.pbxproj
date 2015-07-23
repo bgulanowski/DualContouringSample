@@ -37,6 +37,7 @@
 		84CEE3061B57080D0032FB68 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842839DF1B51516C00917D4C /* main.cpp */; };
 		84CEE3071B5708120032FB68 /* draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8408C05C1B52EBE00007BD02 /* draw.cpp */; };
 		84D7B6FA1B6102010024AF0C /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A676D31B592422008FA91E /* Utility.m */; };
+		84D7B7011B6112F50024AF0C /* SerializableVertex.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 84D7B6FF1B6112F50024AF0C /* SerializableVertex.cpp */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +80,9 @@
 		84A676D31B592422008FA91E /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		84CEE3031B5707E90032FB68 /* DualContouringSampleSDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DualContouringSampleSDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84CEE3041B5707E90032FB68 /* DualContouringSample copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DualContouringSample copy-Info.plist"; path = "/Users/brent/Dev/github/DualContouringSample/Xcode/DualContouringSample copy-Info.plist"; sourceTree = "<absolute>"; };
+		84D7B6FB1B610EF50024AF0C /* serialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serialization.h; sourceTree = "<group>"; };
+		84D7B6FF1B6112F50024AF0C /* SerializableVertex.cpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.cpp; path = SerializableVertex.cpp; sourceTree = "<group>"; };
+		84D7B7001B6112F50024AF0C /* SerializableVertex.hpp */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.cpp.h; path = SerializableVertex.hpp; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -104,6 +108,7 @@
 		8408C0691B530B0B0007BD02 /* Classes */ = {
 			isa = PBXGroup;
 			children = (
+				84D7B6FB1B610EF50024AF0C /* serialization.h */,
 				842839C51B51508100917D4C /* AppDelegate.h */,
 				842839C61B51508100917D4C /* AppDelegate.m */,
 				8408C0661B530AE20007BD02 /* GLView.h */,
@@ -116,6 +121,8 @@
 				8408C06B1B530B760007BD02 /* GLProgram.mm */,
 				84A676D21B592422008FA91E /* Utility.h */,
 				84A676D31B592422008FA91E /* Utility.m */,
+				84D7B6FF1B6112F50024AF0C /* SerializableVertex.cpp */,
+				84D7B7001B6112F50024AF0C /* SerializableVertex.hpp */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -314,6 +321,7 @@
 				842839EB1B51516C00917D4C /* mesh.cpp in Sources */,
 				842839EE1B51516C00917D4C /* svd.cpp in Sources */,
 				84D7B6FA1B6102010024AF0C /* Utility.m in Sources */,
+				84D7B7011B6112F50024AF0C /* SerializableVertex.cpp in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

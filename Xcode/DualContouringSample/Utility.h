@@ -8,6 +8,4 @@
 
 #import <Foundation/Foundation.h>
 
-@interface Utility : NSObject
-
-@end
+extern void LogBlockDuration(NSString *description, dispatch_block_t block);

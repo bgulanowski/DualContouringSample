@@ -8,11 +8,13 @@
 
 #import <Foundation/Foundation.h>
 
+@class NSOpenGLContext;
+
 @interface Model : NSObject
 
 @property (nonatomic) int thresholdIndex;
 
-- (void)reload;
+- (void)reloadInContext:(NSOpenGLContext *)context;
 - (void)draw;
 
 @end

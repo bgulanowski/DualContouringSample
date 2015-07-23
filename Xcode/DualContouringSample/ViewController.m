@@ -21,30 +21,34 @@
 
 @implementation ViewController
 
-//- (nullable instancetype)initWithCoder:(nonnull NSCoder *)coder {
-//    self = [super initWithCoder:coder];
-//    if (self) {
-//        [[NSNotificationCenter defaultCenter] addObserver:self selector:@selector(applicationDidLoad:) name:NSApplicationDidFinishLaunchingNotification object:nil];
-//    }
-//    return self;
-//}
-//
-//- (void)applicationDidLoad:(NSNotification *)note {
-//    [self buildScene];
-//    self.glView.needsDisplay = YES;
-//}
+- (void)buildModel {
+    [_model reloadInContext:self.glView.openGLContext];
+}
 
-- (void)buildScene {
-    _model = [Model new];
-    [_model reload];
-    _program = [GLProgram new];
+- (void)dispatchBuildModel {
+    dispatch_async(dispatch_get_global_queue(DISPATCH_QUEUE_PRIORITY_HIGH, 0), ^{
+        [self buildModel];
+        dispatch_async(dispatch_get_main_queue(), ^{
+            self.glView.model = self.model;
+        });
+    });
+}
+
+- (void)prepareShaders {
+    if (!_program) {
+        _program = [GLProgram new];
+        self.glView.program = self.program;
+    }
 }
 
 - (void)awakeFromNib {
+    if (!_program) {
+        [self prepareShaders];
+    }
     if (!_model) {
-        [self buildScene];
-        self.glView.model = self.model;
-        self.glView.program = self.program;
+        _model = [Model new];
+//        [self buildModel];
+        [self dispatchBuildModel];
     }
 }
 

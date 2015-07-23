@@ -15,5 +15,6 @@
 
 @property (nonatomic) GLProgram *program;
 @property (nonatomic) Model *model;
+@property (nonatomic) NSTimer *timer;
 
 @end

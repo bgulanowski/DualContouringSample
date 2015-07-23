@@ -27,8 +27,11 @@
 - (void)awakeFromNib {
     if ([self pixelFormat].profile == NSOpenGLProfileVersionLegacy) {
         [self setOpenGLContext:[[NSOpenGLContext alloc] initWithFormat:[NSOpenGLPixelFormat glViewFormat] shareContext:nil]];
+        _timer =  [NSTimer scheduledTimerWithTimeInterval:1./30. target:self selector:@selector(setNeedsDisplay) userInfo:nil repeats:YES];
     }
 }
+
+- (void)setNeedsDisplay { self.needsDisplay = YES; }
 
 - (void)drawRect:(NSRect)dirtyRect {
 

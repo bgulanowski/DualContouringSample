@@ -8,10 +8,15 @@
 
 #import "Model.h"
 
+extern "C" {
+#import "Utility.h"
+}
+
 #import "mesh.h"
 #import "octree.h"
 
 #import <OpenGL/gl3.h>
+#import <AppKit/AppKit.h>
 
 const static NSUInteger MAX_THRESHOLDS = 5;
 const static CGFloat THRESHOLDS[MAX_THRESHOLDS] = { -1.f, 0.1f, 1.f, 10.f, 50.f };
@@ -29,6 +34,7 @@ const static int octreeSize = 64;
     self = [super init];
     if (self) {
         _mesh = new Mesh();
+        _mesh->initialise();
         _thresholdIndex = -1;
     }
     return self;
@@ -39,16 +45,28 @@ const static int octreeSize = 64;
     delete _root;
 }
 
-- (void)reload {
-    
+- (void)reloadInContext:(NSOpenGLContext *)context {
+
     _thresholdIndex = (_thresholdIndex + 1) % MAX_THRESHOLDS;
     
-    VertexBuffer vertices;
-    IndexBuffer indices;
+    __block VertexBuffer vertices;
+    __block IndexBuffer indices;
     
-    _root = BuildOctree(glm::ivec3(-octreeSize / 2), octreeSize, THRESHOLDS[_thresholdIndex]);
-    GenerateMeshFromOctree(_root, vertices, indices);
-    _mesh->uploadData(vertices, indices);
+    LogBlockDuration(@"Generate Model", ^{
+        _root = BuildOctree(glm::ivec3(-octreeSize / 2), octreeSize, THRESHOLDS[_thresholdIndex]);
+        GenerateMeshFromOctree(_root, vertices, indices);
+        GenerateMeshFromOctree(_root, (VertexBuffer&)vertices, indices);
+    });
+    
+    [context lock];
+    [context makeCurrentContext];
+    _mesh->uploadData((VertexBuffer&)vertices, indices);
+    [context unlock];
+
+}
+
+- (void)rebuild {
+    
 }
 
 - (void)draw {
