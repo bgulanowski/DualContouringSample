@@ -19,10 +19,11 @@
 		842839ED1B51516C00917D4C /* qef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842839E41B51516C00917D4C /* qef.cpp */; };
 		842839EE1B51516C00917D4C /* svd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842839E61B51516C00917D4C /* svd.cpp */; };
 		842839F01B51528A00917D4C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 842839EF1B51528A00917D4C /* OpenGL.framework */; };
-		842839F51B51571000917D4C /* shader.vert in Resources */ = {isa = PBXBuildFile; fileRef = 842839F31B51571000917D4C /* shader.vert */; };
 		84283A061B52E86C00917D4C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842839CC1B51508100917D4C /* ViewController.m */; };
 		84283A071B52E87000917D4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 842839C61B51508100917D4C /* AppDelegate.m */; };
 		84283A081B52E87500917D4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842839D01B51508100917D4C /* Main.storyboard */; };
+		84A676CD1B591ABB008FA91E /* shader.frag in Resources */ = {isa = PBXBuildFile; fileRef = 842839F21B51571000917D4C /* shader.frag */; };
+		84A676CE1B591AC1008FA91E /* shader.vert in Resources */ = {isa = PBXBuildFile; fileRef = 842839F31B51571000917D4C /* shader.vert */; };
 		84CEE2EF1B5707E90032FB68 /* glsl_program.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842839DD1B51516C00917D4C /* glsl_program.cpp */; };
 		84CEE2F11B5707E90032FB68 /* density.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842839DB1B51516C00917D4C /* density.cpp */; };
 		84CEE2F61B5707E90032FB68 /* octree.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842839E21B51516C00917D4C /* octree.cpp */; };
@@ -31,11 +32,11 @@
 		84CEE2F91B5707E90032FB68 /* svd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842839E61B51516C00917D4C /* svd.cpp */; };
 		84CEE2FB1B5707E90032FB68 /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 842839EF1B51528A00917D4C /* OpenGL.framework */; };
 		84CEE2FD1B5707E90032FB68 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842839D01B51508100917D4C /* Main.storyboard */; };
-		84CEE2FE1B5707E90032FB68 /* shader.vert in Resources */ = {isa = PBXBuildFile; fileRef = 842839F31B51571000917D4C /* shader.vert */; };
 		84CEE2FF1B5707E90032FB68 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 842839CE1B51508100917D4C /* Assets.xcassets */; };
 		84CEE3051B5708080032FB68 /* app.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8408C0601B52F52E0007BD02 /* app.cpp */; };
 		84CEE3061B57080D0032FB68 /* main.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842839DF1B51516C00917D4C /* main.cpp */; };
 		84CEE3071B5708120032FB68 /* draw.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 8408C05C1B52EBE00007BD02 /* draw.cpp */; };
+		84D7B6FA1B6102010024AF0C /* Utility.m in Sources */ = {isa = PBXBuildFile; fileRef = 84A676D31B592422008FA91E /* Utility.m */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -74,6 +75,8 @@
 		842839EF1B51528A00917D4C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		842839F21B51571000917D4C /* shader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader.frag; path = ../../DualContouringSample/shader.frag; sourceTree = "<group>"; };
 		842839F31B51571000917D4C /* shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader.vert; path = ../../DualContouringSample/shader.vert; sourceTree = "<group>"; };
+		84A676D21B592422008FA91E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
+		84A676D31B592422008FA91E /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		84CEE3031B5707E90032FB68 /* DualContouringSampleSDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DualContouringSampleSDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84CEE3041B5707E90032FB68 /* DualContouringSample copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DualContouringSample copy-Info.plist"; path = "/Users/brent/Dev/github/DualContouringSample/Xcode/DualContouringSample copy-Info.plist"; sourceTree = "<absolute>"; };
 /* End PBXFileReference section */
@@ -111,6 +114,8 @@
 				842839CC1B51508100917D4C /* ViewController.m */,
 				8408C06A1B530B760007BD02 /* GLProgram.h */,
 				8408C06B1B530B760007BD02 /* GLProgram.mm */,
+				84A676D21B592422008FA91E /* Utility.h */,
+				84A676D31B592422008FA91E /* Utility.m */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -273,8 +278,9 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				84A676CD1B591ABB008FA91E /* shader.frag in Resources */,
+				84A676CE1B591AC1008FA91E /* shader.vert in Resources */,
 				84283A081B52E87500917D4C /* Main.storyboard in Resources */,
-				842839F51B51571000917D4C /* shader.vert in Resources */,
 				842839CF1B51508100917D4C /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -284,7 +290,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				84CEE2FD1B5707E90032FB68 /* Main.storyboard in Resources */,
-				84CEE2FE1B5707E90032FB68 /* shader.vert in Resources */,
 				84CEE2FF1B5707E90032FB68 /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -308,6 +313,7 @@
 				842839ED1B51516C00917D4C /* qef.cpp in Sources */,
 				842839EB1B51516C00917D4C /* mesh.cpp in Sources */,
 				842839EE1B51516C00917D4C /* svd.cpp in Sources */,
+				84D7B6FA1B6102010024AF0C /* Utility.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
