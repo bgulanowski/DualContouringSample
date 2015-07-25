@@ -61,49 +61,15 @@ const static int octreeSize = 64;
     __block VertexBuffer vertices;
     __block IndexBuffer indices;
     
-#if 0
-    // Trying to subclass to mix in serializable but not working!
-    
-    std::string vertexFileName("dual_contouring_vertices.dat");
-    std::string indexFileName("dual_countouring_indices.dat");
-    
-    std::ifstream vertexFile(vertexFileName, std::ios::in | std::ios::binary);
-    
-    std::ifstream indexFile(indexFileName, std::ios::in | std::ios::binary);
-    
-    if (vertexFile.good() && indexFile.good()) {
-        serialize::read(vertexFile, vertices);
-        vertexFile.close();
-        
-        serialize::read(indexFile, indices);
-        indexFile.close();
-    }
-    
+#if 1
+    [self loadVertices:vertices indices:indices];
     if (vertices.size() == 0 || indices.size() == 0) {
-        
-        LogBlockDuration(@"Generate Model", ^{
-            _root = BuildOctree(glm::ivec3(-octreeSize / 2), octreeSize, THRESHOLDS[_thresholdIndex]);
-            GenerateMeshFromOctree(_root, vertices, indices);
-            GenerateMeshFromOctree(_root, (VertexBuffer&)vertices, indices);
-        });
-        
-        std::ofstream file(vertexFileName, std::ios::out | std::ios::binary | std::ios::trunc);
-        serialize::write(file, vertices);
-        file.flush();
-        file.close();
-        
-        file = std::ofstream(indexFileName, std::ios::out | std::ios::binary | std::ios::trunc);
-        serialize::write(file, indices);
-        file.flush();
-        file.close();
+        [self generateWithVertices:vertices indices:indices];
+        [self saveVertices:vertices indices:indices];
     }
 
 #else
-    LogBlockDuration(@"Generate Model", ^{
-        _root = BuildOctree(glm::ivec3(-octreeSize / 2), octreeSize, THRESHOLDS[_thresholdIndex]);
-        GenerateMeshFromOctree(_root, vertices, indices);
-        GenerateMeshFromOctree(_root, (VertexBuffer&)vertices, indices);
-    });
+    [self generateWithVertices:vertices indices:indices];
 #endif
     
     [context lock];
