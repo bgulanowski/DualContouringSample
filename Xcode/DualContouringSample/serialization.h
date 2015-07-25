@@ -68,7 +68,6 @@ public:
     
     static inline ostream& write_internal (ostream& ostream_, const char* p, uint32_t size)
     {
-        
         if (!LE())
         {
             //if big endian .write as little endian
@@ -128,23 +127,21 @@ public:
     
     static inline ostream& write (ostream& ostream_, const std::string& string_)
     {
-        uint32_t size = string_.size();
-        write (ostream_, size);
-        write_internal (ostream_, string_.c_str(), string_.size());
-        return ostream_;
+        return write(ostream_, string_.c_str(), uint32_t(string_.size()));
     }
     
     static inline ostream& write (ostream& ostream_, std::string& string_)
     {
-        uint32_t size = string_.size();
-        write (ostream_, size);
-        write_internal (ostream_, string_.c_str(), string_.size());
-        return ostream_;
+        return write(ostream_, string_.c_str(), uint32_t(string_.size()));
     }
     
     static inline ostream& write (ostream& ostream_, const char* str)
     {
-        uint32_t size = strlen (str);
+        return write(ostream_, str, uint32_t(strlen(str)));
+    }
+    
+    static inline ostream& write (ostream& ostream_, const char* str, uint32_t size)
+    {
         write (ostream_, size);
         write_internal (ostream_, str, size);
         return ostream_;
@@ -152,7 +149,7 @@ public:
     
     static inline ostream& write (ostream& ostream_, vector<bool>& container)
     {
-        uint32_t size = container.size();
+        uint32_t size = uint32_t(container.size());
         write (ostream_, size);
         
         for (auto ite : container)
