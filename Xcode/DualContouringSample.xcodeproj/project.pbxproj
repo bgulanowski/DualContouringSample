@@ -75,11 +75,11 @@
 		842839EF1B51528A00917D4C /* OpenGL.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = OpenGL.framework; path = System/Library/Frameworks/OpenGL.framework; sourceTree = SDKROOT; };
 		842839F21B51571000917D4C /* shader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader.frag; path = ../../DualContouringSample/shader.frag; sourceTree = "<group>"; };
 		842839F31B51571000917D4C /* shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader.vert; path = ../../DualContouringSample/shader.vert; sourceTree = "<group>"; };
+		845C5EA81B63E8C400B8932D /* serialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serialization.h; sourceTree = "<group>"; };
 		84A676D21B592422008FA91E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		84A676D31B592422008FA91E /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		84CEE3031B5707E90032FB68 /* DualContouringSampleSDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DualContouringSampleSDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		84CEE3041B5707E90032FB68 /* DualContouringSample copy-Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; name = "DualContouringSample copy-Info.plist"; path = "/Users/brent/Dev/github/DualContouringSample/Xcode/DualContouringSample copy-Info.plist"; sourceTree = "<absolute>"; };
-		84DA12D91B63A5E400CF2041 /* serialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serialization.h; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -111,6 +111,7 @@
 				8408C0671B530AE20007BD02 /* GLView.m */,
 				8408C0631B5306BD0007BD02 /* Model.h */,
 				8408C0641B5306BD0007BD02 /* Model.mm */,
+				845C5EA81B63E8C400B8932D /* serialization.h */,
 				842839CB1B51508100917D4C /* ViewController.h */,
 				842839CC1B51508100917D4C /* ViewController.m */,
 				8408C06A1B530B760007BD02 /* GLProgram.h */,
@@ -178,7 +179,6 @@
 				842839E31B51516C00917D4C /* octree.h */,
 				842839E41B51516C00917D4C /* qef.cpp */,
 				842839E51B51516C00917D4C /* qef.h */,
-				84DA12D91B63A5E400CF2041 /* serialization.h */,
 				842839E61B51516C00917D4C /* svd.cpp */,
 				842839E71B51516C00917D4C /* svd.h */,
 			);

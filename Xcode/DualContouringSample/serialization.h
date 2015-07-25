@@ -206,7 +206,7 @@ static inline ostream& write(ostream& ostream_, T&  t_)
 template <class T >
 static inline ostream& write(ostream& ostream_, vector<T>& container)
 {
-	uint32_t size = container.size();
+	uint32_t size = uint32_t(container.size());
 	write(ostream_, size);
 	for (auto& ite : container)
 	{
