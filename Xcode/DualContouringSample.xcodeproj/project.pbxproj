@@ -76,6 +76,7 @@
 		842839F21B51571000917D4C /* shader.frag */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader.frag; path = ../../DualContouringSample/shader.frag; sourceTree = "<group>"; };
 		842839F31B51571000917D4C /* shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader.vert; path = ../../DualContouringSample/shader.vert; sourceTree = "<group>"; };
 		845C5EA81B63E8C400B8932D /* serialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serialization.h; sourceTree = "<group>"; };
+		845C5EAA1B641D4E00B8932D /* MeshSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeshSerialization.h; sourceTree = "<group>"; };
 		84A676D21B592422008FA91E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		84A676D31B592422008FA91E /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		84CEE3031B5707E90032FB68 /* DualContouringSampleSDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DualContouringSampleSDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -118,6 +119,7 @@
 				8408C06B1B530B760007BD02 /* GLProgram.mm */,
 				84A676D21B592422008FA91E /* Utility.h */,
 				84A676D31B592422008FA91E /* Utility.m */,
+				845C5EAA1B641D4E00B8932D /* MeshSerialization.h */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
