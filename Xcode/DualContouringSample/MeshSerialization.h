@@ -76,7 +76,7 @@ inline static std::istream& read(std::istream& istream_, IndexBuffer& indexBuffe
     return serialize::read(istream_, indexBuffer_);
 }
 
-template<typename T> inline static void load(std::string& fileName, std::vector<T>& vector)
+template<typename T> inline static void load(const char * fileName, std::vector<T>& vector)
 {
     std::ifstream file(fileName, std::ios::in | std::ios::binary);
     if (file.good()) {
@@ -85,7 +85,7 @@ template<typename T> inline static void load(std::string& fileName, std::vector<
     }
 }
 
-template<typename T> inline static void save(std::string& fileName, std::vector<T>& vector)
+template<typename T> inline static void save(const char * fileName, std::vector<T>& vector)
 {
     std::ofstream file(fileName, std::ios::out | std::ios::binary | std::ios::trunc);
     write(file, vector);
