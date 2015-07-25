@@ -13,6 +13,9 @@
 @interface ViewController : NSViewController
 
 @property (weak) IBOutlet GLView *glView;
+@property (nonatomic) NSString *saveFolder;
+
+- (void)start;
 
 @end
 

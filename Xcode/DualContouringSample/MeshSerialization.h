@@ -11,6 +11,7 @@
 
 #include <stdio.h>
 
+#include "mesh.h"
 #include "serialization.h"
 
 #import <fstream>

@@ -53,6 +53,10 @@
     glViewport( 0, 0, size.width, size.height );
 }
 
+- (IBAction)cycle:(id)sender {
+    
+}
+
 @end
 
 

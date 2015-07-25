@@ -19,7 +19,7 @@
 		842839ED1B51516C00917D4C /* qef.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842839E41B51516C00917D4C /* qef.cpp */; };
 		842839EE1B51516C00917D4C /* svd.cpp in Sources */ = {isa = PBXBuildFile; fileRef = 842839E61B51516C00917D4C /* svd.cpp */; };
 		842839F01B51528A00917D4C /* OpenGL.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 842839EF1B51528A00917D4C /* OpenGL.framework */; };
-		84283A061B52E86C00917D4C /* ViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 842839CC1B51508100917D4C /* ViewController.m */; };
+		84283A061B52E86C00917D4C /* ViewController.mm in Sources */ = {isa = PBXBuildFile; fileRef = 842839CC1B51508100917D4C /* ViewController.mm */; };
 		84283A071B52E87000917D4C /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 842839C61B51508100917D4C /* AppDelegate.m */; };
 		84283A081B52E87500917D4C /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 842839D01B51508100917D4C /* Main.storyboard */; };
 		84A676CD1B591ABB008FA91E /* shader.frag in Resources */ = {isa = PBXBuildFile; fileRef = 842839F21B51571000917D4C /* shader.frag */; };
@@ -55,7 +55,7 @@
 		842839C61B51508100917D4C /* AppDelegate.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = AppDelegate.m; sourceTree = "<group>"; };
 		842839C91B51508100917D4C /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		842839CB1B51508100917D4C /* ViewController.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = ViewController.h; sourceTree = "<group>"; };
-		842839CC1B51508100917D4C /* ViewController.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = ViewController.m; sourceTree = "<group>"; };
+		842839CC1B51508100917D4C /* ViewController.mm */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.cpp.objcpp; path = ViewController.mm; sourceTree = "<group>"; };
 		842839CE1B51508100917D4C /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		842839D11B51508100917D4C /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
 		842839D31B51508100917D4C /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -77,6 +77,7 @@
 		842839F31B51571000917D4C /* shader.vert */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.glsl; name = shader.vert; path = ../../DualContouringSample/shader.vert; sourceTree = "<group>"; };
 		845C5EA81B63E8C400B8932D /* serialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = serialization.h; sourceTree = "<group>"; };
 		845C5EAA1B641D4E00B8932D /* MeshSerialization.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = MeshSerialization.h; sourceTree = "<group>"; };
+		847F44021B64300400C553BE /* ModelSerializer.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ModelSerializer.h; sourceTree = "<group>"; };
 		84A676D21B592422008FA91E /* Utility.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = Utility.h; sourceTree = "<group>"; };
 		84A676D31B592422008FA91E /* Utility.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = Utility.m; sourceTree = "<group>"; };
 		84CEE3031B5707E90032FB68 /* DualContouringSampleSDL.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = DualContouringSampleSDL.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -108,18 +109,19 @@
 			children = (
 				842839C51B51508100917D4C /* AppDelegate.h */,
 				842839C61B51508100917D4C /* AppDelegate.m */,
-				8408C0661B530AE20007BD02 /* GLView.h */,
-				8408C0671B530AE20007BD02 /* GLView.m */,
-				8408C0631B5306BD0007BD02 /* Model.h */,
-				8408C0641B5306BD0007BD02 /* Model.mm */,
-				845C5EA81B63E8C400B8932D /* serialization.h */,
-				842839CB1B51508100917D4C /* ViewController.h */,
-				842839CC1B51508100917D4C /* ViewController.m */,
 				8408C06A1B530B760007BD02 /* GLProgram.h */,
 				8408C06B1B530B760007BD02 /* GLProgram.mm */,
+				8408C0661B530AE20007BD02 /* GLView.h */,
+				8408C0671B530AE20007BD02 /* GLView.m */,
+				845C5EAA1B641D4E00B8932D /* MeshSerialization.h */,
+				8408C0631B5306BD0007BD02 /* Model.h */,
+				8408C0641B5306BD0007BD02 /* Model.mm */,
+				847F44021B64300400C553BE /* ModelSerializer.h */,
+				845C5EA81B63E8C400B8932D /* serialization.h */,
 				84A676D21B592422008FA91E /* Utility.h */,
 				84A676D31B592422008FA91E /* Utility.m */,
-				845C5EAA1B641D4E00B8932D /* MeshSerialization.h */,
+				842839CB1B51508100917D4C /* ViewController.h */,
+				842839CC1B51508100917D4C /* ViewController.mm */,
 			);
 			name = Classes;
 			sourceTree = "<group>";
@@ -311,7 +313,7 @@
 				842839E81B51516C00917D4C /* density.cpp in Sources */,
 				84283A071B52E87000917D4C /* AppDelegate.m in Sources */,
 				8408C0651B5306BD0007BD02 /* Model.mm in Sources */,
-				84283A061B52E86C00917D4C /* ViewController.m in Sources */,
+				84283A061B52E86C00917D4C /* ViewController.mm in Sources */,
 				8408C06C1B530B760007BD02 /* GLProgram.mm in Sources */,
 				842839EC1B51516C00917D4C /* octree.cpp in Sources */,
 				842839ED1B51516C00917D4C /* qef.cpp in Sources */,

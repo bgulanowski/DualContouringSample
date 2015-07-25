@@ -12,9 +12,11 @@ extern "C" {
 #import "Utility.h"
 }
 
+#import "MeshSerialization.h"
+#import "ModelSerializer.h"
+
 #import "mesh.h"
 #import "octree.h"
-#import "MeshSerialization.h"
 
 #import <OpenGL/gl3.h>
 #import <AppKit/AppKit.h>
@@ -26,24 +28,10 @@ const static CGFloat THRESHOLDS[MAX_THRESHOLDS] = { -1.f, 0.1f, 1.f, 10.f, 50.f 
 // octreeSize must be a power of two!
 const static int octreeSize = 64;
 
-NS_INLINE NSString *AppFolder( void ) {
-    NSString *appSupportDir = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES).lastObject;
-    NSString *appFolderName = [[NSProcessInfo processInfo] processName];
-    return [appSupportDir stringByAppendingPathComponent:appFolderName];
-}
-
-NS_INLINE NSString *DataFolder( NSString *directory, int subfolder ) {
-    return [directory stringByAppendingPathComponent:[@(subfolder) stringValue]];
-}
-
 @interface Model ()
 @property (nonatomic) Mesh *mesh;
 @property (nonatomic) OctreeNode *root;
-@property (nonatomic) NSString *vertexFileName;
-@property (nonatomic) NSString *indexFileName;
 
-@property (nonatomic, readonly) NSString *vertexFilePath;
-@property (nonatomic, readonly) NSString *indexFilePath;
 @property (nonatomic, readonly) NSString *thresholdFolder;
 @property (nonatomic, readonly) CGFloat threshold;
 @end
@@ -53,8 +41,6 @@ NS_INLINE NSString *DataFolder( NSString *directory, int subfolder ) {
 - (instancetype)init {
     self = [super init];
     if (self) {
-        _vertexFileName = @"dual_contouring_vertices";
-        _indexFileName = @"dual_contouring_indices";
         _mesh = new Mesh();
         _mesh->initialise();
         _thresholdIndex = -1;
@@ -67,25 +53,14 @@ NS_INLINE NSString *DataFolder( NSString *directory, int subfolder ) {
     delete _root;
 }
 
-- (NSString *)vertexFilePath {
-    return [self.thresholdFolder stringByAppendingPathComponent:self.vertexFileName];
-}
-
-- (NSString *)indexFilePath {
-    return [self.thresholdFolder stringByAppendingPathComponent:self.indexFileName];
-}
-
 - (NSString *)thresholdFolder {
-    return DataFolder(AppFolder(), self.thresholdIndex);
+    return [@(self.thresholdIndex) description];
 }
-
-- (CGFloat)threshold
-{
+- (CGFloat)threshold {
     return THRESHOLDS[_thresholdIndex % MAX_THRESHOLDS];
 }
 
-- (void)incrementThreshold
-{
+- (void)incrementThreshold {
     _thresholdIndex = (_thresholdIndex + 1) % MAX_THRESHOLDS;
 }
 
@@ -94,15 +69,11 @@ NS_INLINE NSString *DataFolder( NSString *directory, int subfolder ) {
     __block VertexBuffer vertices;
     __block IndexBuffer indices;
     
-    [self loadVertices:vertices indices:indices];
+    [self.serializer loadVertices:vertices indices:indices folder:self.thresholdFolder];
     
     if (vertices.size() == 0 || indices.size() == 0) {
         [self generateWithVertices:vertices indices:indices];
-        [self saveVertices:vertices indices:indices];
-        NSLog(@"Saved files to %@", self.thresholdFolder);
-    }
-    else {
-        NSLog(@"Loaded files from %@", self.thresholdFolder);
+        [self.serializer saveVertices:vertices indices:indices folder:self.thresholdFolder];
     }
     
     [context makeCurrentContext];
@@ -123,20 +94,6 @@ NS_INLINE NSString *DataFolder( NSString *directory, int subfolder ) {
     LogBlockDuration(@"Generate Mesh", ^{
         GenerateMeshFromOctree(_root, vertices, indices);
     });
-}
-
-- (void)loadVertices:(VertexBuffer&)vertices indices:(IndexBuffer&)indices
-{
-    load([[self vertexFilePath] UTF8String], vertices);
-    load([[self indexFilePath] UTF8String], indices);
-}
-
-- (void)saveVertices:(VertexBuffer&)vertices indices:(IndexBuffer&)indices
-{
-    [[NSFileManager defaultManager] createDirectoryAtPath:self.thresholdFolder withIntermediateDirectories:YES attributes:nil error:NULL];
-
-    save([[self vertexFilePath] UTF8String], vertices);
-    save([[self indexFilePath] UTF8String], indices);
 }
 
 - (void)draw {

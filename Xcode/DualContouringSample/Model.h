@@ -9,9 +9,11 @@
 #import <Foundation/Foundation.h>
 
 @class NSOpenGLContext;
+@protocol ModelSerializer;
 
 @interface Model : NSObject
 
+@property (nonatomic, weak) id<ModelSerializer>serializer;
 @property (nonatomic) int thresholdIndex;
 
 - (void)reloadInContext:(NSOpenGLContext *)context;

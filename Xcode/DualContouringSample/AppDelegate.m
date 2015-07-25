@@ -8,18 +8,29 @@
 
 #import "AppDelegate.h"
 
-@interface AppDelegate ()
+#import "Model.h"
+#import "ViewController.h"
 
+@interface AppDelegate ()
+@property (nonatomic, readonly) ViewController *viewController;
 @end
+
+NS_INLINE NSString *AppFolder( void ) {
+    NSString *appSupportDir = NSSearchPathForDirectoriesInDomains(NSApplicationSupportDirectory, NSUserDomainMask, YES).lastObject;
+    NSString *appFolderName = [[NSProcessInfo processInfo] processName];
+    return [appSupportDir stringByAppendingPathComponent:appFolderName];
+}
 
 @implementation AppDelegate
 
 - (void)applicationDidFinishLaunching:(NSNotification *)aNotification {
-    // Insert code here to initialize your application
+    ViewController *vc = self.viewController;
+    vc.saveFolder = AppFolder();
+    [vc start];
 }
 
-- (void)applicationWillTerminate:(NSNotification *)aNotification {
-    // Insert code here to tear down your application
+- (ViewController *)viewController {
+    return (ViewController *)[[NSApp.windows lastObject] contentViewController];
 }
 
 @end
