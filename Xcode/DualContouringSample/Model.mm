@@ -15,9 +15,6 @@ extern "C" {
 #import "mesh.h"
 #import "octree.h"
 
-#import "serialization.h"
-#import "SerializableVertex.hpp"
-
 #import <OpenGL/gl3.h>
 #import <AppKit/AppKit.h>
 
@@ -56,10 +53,11 @@ const static int octreeSize = 64;
 
     _thresholdIndex = (_thresholdIndex + 1) % MAX_THRESHOLDS;
 
+    __block VertexBuffer vertices;
+    __block IndexBuffer indices;
+    
 #if 0
     // Trying to subclass to mix in serializable but not working!
-    __block std::vector<SerializableVertex> vertices;
-    __block IndexBuffer indices;
     
     std::string vertexFileName("dual_contouring_vertices.dat");
     std::string indexFileName("dual_countouring_indices.dat");
@@ -96,9 +94,6 @@ const static int octreeSize = 64;
     }
 
 #else
-    __block VertexBuffer vertices;
-    __block IndexBuffer indices;
-    
     LogBlockDuration(@"Generate Model", ^{
         _root = BuildOctree(glm::ivec3(-octreeSize / 2), octreeSize, THRESHOLDS[_thresholdIndex]);
         GenerateMeshFromOctree(_root, vertices, indices);
