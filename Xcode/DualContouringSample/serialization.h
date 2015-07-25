@@ -192,20 +192,17 @@ static inline istream& read(istream& istream_, T&  t_)
 
 template<typename T>
 static inline ostream& write(ostream& ostream_, T&  t_)
-{
-    if(std::is_fundamental<T>::value)
     {
-    return write_internal(ostream_, (const char*)&t_, sizeof(t_));
-    }else
-    {
-     
-        if(std::is_trivial<T>::value)
-           return write_internal(ostream_, (const char*)&t_, sizeof(t_));
-        else
-            return write(ostream_, (serialize::I*)&t_);
-    }
-    
-	
+        if(std::is_fundamental<T>::value)
+        {
+            return write_internal(ostream_, (const char*)&t_, sizeof(t_));
+        }else
+        {
+            if(std::is_trivial<T>::value)
+                return write_internal(ostream_, (const char*)&t_, sizeof(t_));
+            else
+                return write(ostream_, (serialize::I*)&t_);
+        }
 }
     
 
