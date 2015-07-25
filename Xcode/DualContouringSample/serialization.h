@@ -142,9 +142,7 @@ public:
     
     static inline ostream& write (ostream& ostream_, const char* str, uint32_t size)
     {
-        write (ostream_, size);
-        write_internal (ostream_, str, size);
-        return ostream_;
+        return write_internal (write (ostream_, size), str, size);
     }
     
     static inline ostream& write (ostream& ostream_, vector<bool>& container)
