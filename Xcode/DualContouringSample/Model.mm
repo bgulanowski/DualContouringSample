@@ -60,17 +60,7 @@ const static int octreeSize = 64;
 
     __block VertexBuffer vertices;
     __block IndexBuffer indices;
-    
-#if 1
-    [self loadVertices:vertices indices:indices];
-    if (vertices.size() == 0 || indices.size() == 0) {
-        [self generateWithVertices:vertices indices:indices];
-        [self saveVertices:vertices indices:indices];
-    }
-
-#else
     [self generateWithVertices:vertices indices:indices];
-#endif
     
     [context lock];
     [context makeCurrentContext];
@@ -87,33 +77,6 @@ const static int octreeSize = 64;
     LogBlockDuration(@"Generate Mesh", ^{
         GenerateMeshFromOctree(_root, vertices, indices);
     });
-}
-
-- (void)loadVertices:(VertexBuffer&)vertices indices:(IndexBuffer&)indices
-{
-    std::ifstream vertexFile(_vertexFileName, std::ios::in | std::ios::binary);
-    std::ifstream indexFile(_indexFileName, std::ios::in | std::ios::binary);
-    
-    if (vertexFile.good() && indexFile.good()) {
-        serialize::read(vertexFile, vertices);
-        vertexFile.close();
-        
-        serialize::read(indexFile, indices);
-        indexFile.close();
-    }
-}
-
-- (void)saveVertices:(VertexBuffer&)vertices indices:(IndexBuffer&)indices
-{
-    std::ofstream file(_vertexFileName, std::ios::out | std::ios::binary | std::ios::trunc);
-    serialize::write(file, vertices);
-    file.flush();
-    file.close();
-    
-    file = std::ofstream(_indexFileName, std::ios::out | std::ios::binary | std::ios::trunc);
-    serialize::write(file, indices);
-    file.flush();
-    file.close();
 }
 
 - (void)rebuild {

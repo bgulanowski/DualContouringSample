@@ -11,43 +11,17 @@
 #endif
 #include <glm/glm.hpp>
 
-#include "serialization.h"
-
 // ----------------------------------------------------------------------------
 
-struct MeshVertex : serialize::I
+struct MeshVertex
 {
-    MeshVertex() : xyz(0), normal(0) {}
 	MeshVertex(const glm::vec3& _xyz, const glm::vec3& _normal)
 		: xyz(_xyz)
 		, normal(_normal)
 	{
 	}
 
-    ostream& write(ostream& s)
-    {
-        serialize::write(s, xyz.x);
-        serialize::write(s, xyz.y);
-        serialize::write(s, xyz.z);
-        serialize::write(s, normal.x);
-        serialize::write(s, normal.y);
-        serialize::write(s, normal.z);
-        
-        return s;
-    }
-    istream& read(istream& s)
-    {
-        serialize::read(s, xyz.x);
-        serialize::read(s, xyz.y);
-        serialize::read(s, xyz.z);
-        serialize::read(s, normal.x);
-        serialize::read(s, normal.y);
-        serialize::read(s, normal.z);
-        
-        return s;
-    }
-
-    glm::vec3		xyz, normal;
+	glm::vec3		xyz, normal;
 };
 
 typedef std::vector<MeshVertex> VertexBuffer;
